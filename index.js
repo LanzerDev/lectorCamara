@@ -1,3 +1,5 @@
+const labelResult = document.querySelector("#result");
+
 Quagga.init({
     inputStream: {
         type: "LiveStream",
@@ -23,4 +25,5 @@ Quagga.init({
 // Manejar el resultado del escaneo
 Quagga.onDetected(function(result) {
     console.log("Código detectado:", result.codeResult.code);
+    labelResult.textContent = result.codeResult.code;
 });
