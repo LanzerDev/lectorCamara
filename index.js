@@ -1,4 +1,7 @@
+
+
 const labelResult = document.querySelector("#result");
+const btnStart = document.querySelector("#btnStart");
 
 Quagga.init({
     inputStream: {
@@ -18,7 +21,11 @@ Quagga.init({
         console.error(err);
         return;
     }
-    console.log("Quagga inicializado correctamente");
+    // console.log("Quagga inicializado correctamente");
+    // Quagga.start();
+});
+
+btnStart.addEventListener("click", function() {
     Quagga.start();
 });
 
@@ -26,4 +33,5 @@ Quagga.init({
 Quagga.onDetected(function(result) {
     console.log("Código detectado:", result.codeResult.code);
     labelResult.textContent = result.codeResult.code;
+    Quagga.stop();
 });
