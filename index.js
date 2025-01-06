@@ -8,8 +8,8 @@ Quagga.init({
         type: "LiveStream",
         target: document.querySelector("#camera"), // Elemento donde se mostrará la cámara
         constraints: {
-            width: 640,
-            height: 480,
+            width: 500,
+            height: 300,
             facingMode: "environment" // Usa la cámara trasera del móvil
         }
     },
@@ -32,6 +32,6 @@ btnStart.addEventListener("click", function() {
 // Manejar el resultado del escaneo
 Quagga.onDetected(function(result) {
     console.log("Código detectado:", result.codeResult.code);
-    labelResult.textContent = result.codeResult.code;
+    labelResult.textContent = "Código detectado:" + result.codeResult.code;
     Quagga.stop();
 });

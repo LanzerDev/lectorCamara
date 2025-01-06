@@ -1,47 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8"/>
-    <title>QuaggaJS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Escáner de Códigos de Barras</title>
     <style>
-        #camera video{
-            width:100%;
-            max-width: 640px;
+        #camera {
+            position: relative;
+        }
+        #camera video {
+            position: relative;
+            z-index: 2;
+        }
+        #camera canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
     </style>
 </head>
-
 <body>
-<div id="camera" style="width:100%"></div>
-<script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.min.js"></script>
-<script>
-    const quaggaConf = {
-        inputStream: {
-            target: document.querySelector("#camera"),
-            type: "LiveStream",
-            constraints: {
-                width: { min: 640 },
-                height: { min: 480 },
-                facingMode: "environment",
-                aspectRatio: { min: 1, max: 2 }
-            }
-        },
-        decoder: {
-            readers: ['code_128_reader']
-        },
-    }
+    <h1>Escáner de Códigos de Barras</h1>
+    <div id="camera"></div>
 
-    Quagga.init(quaggaConf, function (err) {
-        if (err) {
-            return console.log(err);
-        }
-        Quagga.start();
-    });
+    <button id="btnStart" class="btn btn-primary">Iniciar escaneo</button>
 
-    Quagga.onDetected(function (result) {
-        alert("Detected barcode: " + result.codeResult.code);
-    });
-</script>
+    <h2 id="result">Esperando escaneo...</h2>
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.min.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
