@@ -244,10 +244,7 @@ $(function(){
             numOfWorkers: 8,
             frequency: 10,
             decoder: {
-                readers : [{
-                    format: "code_128_reader",
-                    config: {}
-                }]
+                readers : ["code_128_reader", "ean_reader", "upc_reader"]
             },
             locate: true
         },
